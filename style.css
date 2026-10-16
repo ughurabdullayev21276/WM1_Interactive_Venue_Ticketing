@@ -135,4 +135,14 @@ header p {
 #total {
     font-weight: bold;
 }
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
 
+    .auditorium,
+    .sidebar {
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
