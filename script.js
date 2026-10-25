@@ -9,6 +9,7 @@ const auditorium = {
 console.log(auditorium);
 
 // i added number of seats in each row of the auditorium
+const lowerLeft = [7, 8, 8];
 const lowerCenter = [10, 11, 12];
 const lowerRight = [7, 8, 8];
 const upperLeft = [8, 10, 9, 9, 8];
@@ -34,3 +35,43 @@ const ticketPrices = {
 };
 
 console.log("Ticket Prices:", ticketPrices);
+
+
+
+
+
+function createSeats(sectionId, rows) {
+    const section = document.getElementById(sectionId);
+
+    section.innerHTML = "";
+
+    for (let r = rows.length - 1; r >= 0; r--) {
+
+        const row = document.createElement("div");
+        row.className = "seat-row";
+
+        for (let i = 1; i <= rows[r]; i++) {
+
+            const seat = document.createElement("button");
+            seat.type = "button";
+            seat.className = "seat";
+
+            seat.setAttribute("aria-label",
+                `Row ${r + 1}, Seat ${i}`);
+
+            row.appendChild(seat);
+        }
+
+        section.appendChild(row);
+    }
+}
+
+
+createSeats("lower-left", lowerLeft);
+createSeats("lower-center", lowerCenter);
+createSeats("lower-right", lowerRight);
+createSeats("upper-left", upperLeft);
+createSeats("upper-center", upperCenter);
+createSeats("upper-right", upperRight);
+
+createSeats("second-floor", secondFloor);
