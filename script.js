@@ -3,15 +3,16 @@ const auditorium = {
     name: "ADA University C Building Auditorium",
     totalSeats: 267,
     sections: 7
-}; // it stores basic information about the auditorium
-
+};
 
 console.log(auditorium);
+
 
 // i added number of seats in each row of the auditorium
 const lowerLeft = [7, 8, 8];
 const lowerCenter = [10, 11, 12];
 const lowerRight = [7, 8, 8];
+
 const upperLeft = [8, 10, 9, 9, 8];
 const upperCenter = [15, 16, 17, 18, 19];
 const upperRight = [8, 10, 9, 9, 8];
@@ -24,10 +25,10 @@ console.log("Lower Right:", lowerRight);
 console.log("Upper Left:", upperLeft);
 console.log("Upper Center:", upperCenter);
 console.log("Upper Right:", upperRight);
-
 console.log("Second Floor:", secondFloor);
 
-// prices for tickets
+
+// Ticket prices
 const ticketPrices = {
     premium: 30,
     standard: 20,
@@ -37,10 +38,8 @@ const ticketPrices = {
 console.log("Ticket Prices:", ticketPrices);
 
 
-
-
-
 function createSeats(sectionId, rows) {
+
     const section = document.getElementById(sectionId);
 
     section.innerHTML = "";
@@ -56,14 +55,58 @@ function createSeats(sectionId, rows) {
             seat.type = "button";
             seat.className = "seat";
 
-            seat.setAttribute("aria-label",
-                `Row ${r + 1}, Seat ${i}`);
+            seat.setAttribute(
+                "aria-label",
+                `Row ${r + 1}, Seat ${i}`
+            );
+
+            // Show seat details when clicked
+            seat.addEventListener("click", function() {
+                showSeatDetails(sectionId, r, i);
+            });
 
             row.appendChild(seat);
         }
 
         section.appendChild(row);
     }
+}
+
+
+function showSeatDetails(sectionId, rowIndex, seatNumber) {
+
+    const sectionName = sectionId
+        .replace("-", " ")
+        .replace(/\b\w/g, letter => letter.toUpperCase());
+
+    let rowLetter;
+
+    if (sectionId.startsWith("lower")) {
+        rowLetter = String.fromCharCode(65 + rowIndex);
+    } else if (sectionId.startsWith("upper")) {
+        rowLetter = String.fromCharCode(68 + rowIndex);
+    } else {
+        rowLetter = "I";
+    }
+
+    let price;
+
+    if (sectionId.startsWith("lower")) {
+        price = ticketPrices.premium;
+    } else if (sectionId.startsWith("upper")) {
+        price = ticketPrices.standard;
+    } else {
+        price = ticketPrices.economy;
+    }
+
+    const message = document.getElementById("seat-message");
+
+    message.innerHTML = `
+        Section: ${sectionName}<br>
+        Row: ${rowLetter}<br>
+        Seat: ${seatNumber}<br>
+        Price: ${price} AZN
+    `;
 }
 
 
