@@ -8,7 +8,6 @@ const auditorium = {
 console.log(auditorium);
 
 
-// i added number of seats in each row of the auditorium
 const lowerLeft = [7, 8, 8];
 const lowerCenter = [10, 11, 12];
 const lowerRight = [7, 8, 8];
@@ -28,14 +27,24 @@ console.log("Upper Right:", upperRight);
 console.log("Second Floor:", secondFloor);
 
 
-// Ticket prices
 const ticketPrices = {
-    premium: 30,
-    standard: 20,
-    economy: 10
+    premium: 50,
+    standard: 30,
+    economy: 15
 };
 
 console.log("Ticket Prices:", ticketPrices);
+
+
+let inspectedSeat = null;
+
+
+const unavailableSeats = [
+    "lower-center-A-3",
+    "lower-left-B-2",
+    "upper-right-D-5",
+    "upper-center-F-7"
+];
 
 
 function createSeats(sectionId, rows) {
@@ -55,13 +64,36 @@ function createSeats(sectionId, rows) {
             seat.type = "button";
             seat.className = "seat";
 
+            let rowLetter;
+
+            if (sectionId.startsWith("lower")) {
+                rowLetter = String.fromCharCode(65 + r);
+            } else if (sectionId.startsWith("upper")) {
+                rowLetter = String.fromCharCode(68 + r);
+            } else {
+                rowLetter = "I";
+            }
+
+            const seatId = `${sectionId}-${rowLetter}-${i}`;
+
             seat.setAttribute(
                 "aria-label",
-                `Row ${r + 1}, Seat ${i}`
+                `${sectionId}, Row ${rowLetter}, Seat ${i}`
             );
 
-            // Show seat details when clicked
+            if (unavailableSeats.includes(seatId)) {
+                seat.classList.add("unavailable");
+                seat.disabled = true;
+            }
             seat.addEventListener("click", function() {
+
+                if (inspectedSeat !== null) {
+                    inspectedSeat.classList.remove("inspected");
+                }
+
+                seat.classList.add("inspected");
+                inspectedSeat = seat;
+
                 showSeatDetails(sectionId, r, i);
             });
 
@@ -75,6 +107,7 @@ function createSeats(sectionId, rows) {
 
 function showSeatDetails(sectionId, rowIndex, seatNumber) {
 
+    // Convert section ID into a readable name
     const sectionName = sectionId
         .replace("-", " ")
         .replace(/\b\w/g, letter => letter.toUpperCase());
@@ -113,6 +146,7 @@ function showSeatDetails(sectionId, rowIndex, seatNumber) {
 createSeats("lower-left", lowerLeft);
 createSeats("lower-center", lowerCenter);
 createSeats("lower-right", lowerRight);
+
 createSeats("upper-left", upperLeft);
 createSeats("upper-center", upperCenter);
 createSeats("upper-right", upperRight);

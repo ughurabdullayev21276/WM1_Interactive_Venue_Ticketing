@@ -181,6 +181,70 @@ header p {
     background-color: #387a58;
 }
 
+/* Available seat */
+.seat {
+    background-color: #4f8a69;
+}
+
+.seat.inspected,
+.seat.inspected:hover {
+    background-color: #e6a23c;
+}
+
+.seat.in-cart,
+.seat.in-cart:hover {
+    background-color: #4679c7;
+}
+
+.seat.unavailable,
+.seat.unavailable:hover {
+    background-color: #999999;
+    cursor: not-allowed;
+}
+
+.seat:not(.unavailable):not(.inspected):not(.in-cart):hover {
+    background-color: #387a58;
+}
+
+/* Seat legend */
+
+.seat-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 18px;
+    height: 22px;
+    border-radius: 2px;
+}
+
+.legend-color.available {
+    background-color: #4f8a69;
+}
+
+.legend-color.inspected {
+    background-color: #e6a23c;
+}
+
+.legend-color.in-cart {
+    background-color: #4679c7;
+}
+
+.legend-color.unavailable {
+    background-color: #999999;
+}
+
 
 
 @media (max-width: 768px) {
