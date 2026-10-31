@@ -315,6 +315,8 @@ function addToCart() {
     addButton.disabled = true;
 
     updateCart();
+    saveCart();
+    removeFromCart()
 }
 
 function removeFromCart(seatId) {
@@ -357,8 +359,48 @@ function removeFromCart(seatId) {
     }
 
     updateCart();
+    saveCart();
+
 }
 
 addButton.addEventListener("click", addToCart);
 
-updateCart();
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function loadCart() {
+
+    const savedCart = localStorage.getItem("cart");
+
+    if (savedCart === null) {
+        return;
+    }
+
+    const tickets = JSON.parse(savedCart);
+
+    for (const ticket of tickets) {
+
+        const seatButtons = document.querySelectorAll(".seat");
+
+        for (const seat of seatButtons) {
+
+            const label = seat.getAttribute("aria-label");
+            const parts = label.split(", ");
+
+            const seatId =
+                `${parts[0]}-${parts[1].replace("Row ", "")}-${parts[2].replace("Seat ", "")}`;
+
+            if (seatId === ticket.id && !seat.disabled) {
+                seat.classList.add("in-cart");
+                cart.push(ticket);
+                break;
+            }
+        }
+    }
+
+    updateCart();
+}
+
+loadCart();
