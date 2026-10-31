@@ -18,7 +18,7 @@
 
     <main>
 
-        <!-- Event Information -->
+
         <section class="event-info">
             <h2>Choose Your Seat</h2>
             <p>ADA University | C Building Auditorium</p>
@@ -27,69 +27,89 @@
 
         <div class="container">
 
-            <!-- seating map -->
+    
             <section class="auditorium">
+
                 <h2>Seating Map</h2>
                 <p>Click on a seat to view its details.</p>
 
-          <div class="map">
+                <div class="map">
 
-         <div id="second-floor"></div>
-<div id="upper-section">
-    <div id="upper-left"></div>
-    <div id="upper-center"></div>
-    <div id="upper-right"></div>
-</div>
+                    <div id="map-content">
 
-            <div id="lower-section">
-            <div id="lower-left"></div>
-          <div id="lower-center"></div>
-          <div id="lower-right"></div>
-</div>
+                        <div id="second-floor"></div>
 
-          <div class="stage">STAGE</div>
+                        <div id="upper-section">
 
-</div>
+                            <div id="upper-left"></div>
+                            <div id="upper-center"></div>
+                            <div id="upper-right"></div>
 
-                <!-- i added navigation Buttons -->
+                        </div>
+                        <div id="lower-section">
+
+                            <div id="lower-left"></div>
+                            <div id="lower-center"></div>
+                            <div id="lower-right"></div>
+
+                        </div>
+
+                        <div class="stage">STAGE</div>
+
+                    </div> 
+
+                </div> 
+
+
                 <div class="controls">
+
                     <button type="button" id="zoom-in">Zoom +</button>
                     <button type="button" id="zoom-out">Zoom -</button>
+
                     <button type="button" id="move-up">↑</button>
                     <button type="button" id="move-down">↓</button>
                     <button type="button" id="move-left">←</button>
                     <button type="button" id="move-right">→</button>
+
                     <button type="button" id="reset-view">Reset</button>
+
                 </div>
 
 
                 <div class="seat-legend">
-                   <div>
-                    <span class="legend-color available"></span>
-                              Available
-                     </div>
 
-                             <div>
+                    <div>
+                        <span class="legend-color available"></span>
+                        Available
+                    </div>
+
+                    <div>
                         <span class="legend-color inspected"></span>
-                      Inspected
-                     </div>
+                        Inspected
+                    </div>
 
-                       <div>
-                     <span class="legend-color in-cart"></span>
-                           In Cart
-                               </div>
+                    <div>
+                        <span class="legend-color in-cart"></span>
+                        In Cart
+                    </div>
 
-                             <div>
-                         <span class="legend-color unavailable"></span>
-                                  Unavailable
-                              </div>
-                            </div>
+                    <div>
+                        <span class="legend-color unavailable"></span>
+                        Unavailable
+                    </div>
+
+                </div>
+
             </section>
+
 
             <aside class="sidebar">
 
+ 
                 <section class="seat-details">
+
                     <h2>Seat Details</h2>
+
                     <p id="seat-message">
                         Select a seat to view details.
                     </p>
@@ -97,15 +117,22 @@
                     <button type="button" id="add-to-cart" disabled>
                         ADD TO CART
                     </button>
+
                 </section>
 
                 <section class="cart">
+
                     <h2>Your Cart</h2>
 
                     <ul id="cart-items"></ul>
 
                     <p>No tickets added yet.</p>
-                    <p>Total: <span id="total">0 AZN</span></p>
+
+                    <p>
+                        Total:
+                        <span id="total">0 AZN</span>
+                    </p>
+
                 </section>
 
             </aside>
@@ -114,7 +141,7 @@
 
     </main>
 
-  
-<script src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>

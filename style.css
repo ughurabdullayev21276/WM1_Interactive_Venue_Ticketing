@@ -71,13 +71,18 @@ header p {
     padding: 20px;
     text-align: center;
     overflow: auto;
+    min-height: 380px;
 }
 
 .map h3 {
     margin: 25px 0;
 }
 
-/* Stage */
+#map-content {
+    transform-origin: center center;
+    transition: transform 0.2s ease;
+}
+
 
 .stage {
     background-color: #d6c2a5;
@@ -88,7 +93,6 @@ header p {
     font-weight: bold;
 }
 
-/* Navigation Buttons */
 
 .controls {
     display: flex;

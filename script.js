@@ -142,13 +142,61 @@ function showSeatDetails(sectionId, rowIndex, seatNumber) {
     `;
 }
 
+const mapContent = document.getElementById("map-content");
+
+let zoomLevel = 1;
+let moveX = 0;
+let moveY = 0;
+
+function updateMap() {
+    mapContent.style.transform =
+        `translate(${moveX}px, ${moveY}px) scale(${zoomLevel})`;
+}
+
+document.getElementById("zoom-in").addEventListener("click", function() {
+    zoomLevel = Math.min(2, zoomLevel + 0.2);
+    updateMap();
+});
+
+document.getElementById("zoom-out").addEventListener("click", function() {
+    zoomLevel = Math.max(0.6, zoomLevel - 0.2);
+    updateMap();
+});
+
+document.getElementById("move-up").addEventListener("click", function() {
+    moveY += 30;
+    updateMap();
+});
+
+document.getElementById("move-down").addEventListener("click", function() {
+    moveY -= 30;
+    updateMap();
+});
+
+
+document.getElementById("move-left").addEventListener("click", function() {
+    moveX += 30;
+    updateMap();
+});
+
+document.getElementById("move-right").addEventListener("click", function() {
+    moveX -= 30;
+    updateMap();
+});
+
+document.getElementById("reset-view").addEventListener("click", function() {
+    zoomLevel = 1;
+    moveX = 0;
+    moveY = 0;
+    mapContent.style.transform = "translate(0px, 0px) scale(1)";
+});
+
+
 
 createSeats("lower-left", lowerLeft);
 createSeats("lower-center", lowerCenter);
 createSeats("lower-right", lowerRight);
-
 createSeats("upper-left", upperLeft);
 createSeats("upper-center", upperCenter);
 createSeats("upper-right", upperRight);
-
 createSeats("second-floor", secondFloor);
